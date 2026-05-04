@@ -10,7 +10,7 @@ No accounts. No friction. Share results with just a link.
 
 1. Drop an audio or video file onto the upload page
 2. The file goes directly to Cloudflare R2 via a presigned URL
-3. A FastAPI worker polls for new uploads, runs ffmpeg + Whisper + an LLM, and writes the results back to the database
+3. A FastAPI worker polls for new uploads, strips audio with ffmpeg, transcribes with AssemblyAI, generates notes and flashcards with Gemini, and writes the results back to the database
 4. The notes page is shareable — anyone with the link can view the output
 
 ## Stack
@@ -21,6 +21,9 @@ No accounts. No friction. Share results with just a link.
 | Storage | Cloudflare R2 |
 | Database | Supabase (Postgres) |
 | AI worker | FastAPI (Python) — separate repo |
+| Transcription | AssemblyAI |
+| LLM | Google Gemini |
+| Audio processing | ffmpeg |
 
 ## Supported file types
 
